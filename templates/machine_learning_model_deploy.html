@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            <!-- general form elements disabled -->
+            <div class="card card-warning">
+              <div class="card-header">
+                <h3 class="card-title">情感分类</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <form role="form">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- textarea -->
+                      <div class="form-group">
+                        <label>Textarea</label>
+                        <textarea class="form-control" id ="sentence" rows="3" placeholder="Enter ..."></textarea>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Textarea Disabled</label>
+                        <textarea class="form-control" rows="3" id ="sa_result" placeholder="Enter ..." disabled></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <button type="button" id="sa" class="btn btn-block btn-default">情感分析</button>
+                      <script>
+                        $(function() {
+                            $("#sa").click(function(){
+                                var sentence = $("#sentence").val();
+
+                                $.ajax({
+                                    url: "",
+                                    type: "POST",
+                                    contentType: 'application/json; charset=UTF-8',
+                                    data: JSON.stringify({"sentence": sentence}),
+                                    async : false,
+                                    success: function (data) {
+                                        if(data['status'] == "success"){
+
+
+                                        }else{
+
+                                        }
+
+                                    }
+                                })
+
+                            })
+                        })
+                    </script>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- general form elements disabled -->
+            <!-- /.card -->
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+
+{% endblock %}

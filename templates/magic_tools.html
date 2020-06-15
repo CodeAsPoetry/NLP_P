@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-6">
+                  <div class="card card-warning">
+                      <div class="card-header">
+                        <h3 class="card-title">分词工具</h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body">
+                        <form role="form">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <!-- textarea -->
+                              <div class="form-group">
+                                <label>Textarea</label>
+                                <textarea class="form-control" id ="sentence" rows="3" placeholder="Enter ..."></textarea>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label>Textarea Disabled</label>
+                                <textarea class="form-control" rows="3" id ="word_list" placeholder="Enter ..." disabled></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <button type="button" id="cut" class="btn btn-block btn-default">结巴分词</button>
+                              <script>
+                                $(function() {
+                                    $("#cut").click(function(){
+                                        var sentence = $("#sentence").val();
+
+                                        $.ajax({
+                                            url: "/api/cut_word",
+                                            type: "POST",
+                                            contentType: 'application/json; charset=UTF-8',
+                                            data: JSON.stringify({"sentence": sentence}),
+                                            async : false,
+                                            success: function (data) {
+                                                if(data['status'] == "success"){
+                                                    console.log(data['word_list']);
+                                                    $("#word_list").val(data['word_list'])
+
+                                                }else{
+                                                    alert("结巴分词失败！")
+                                                }
+
+                                            }
+                                        })
+
+                                    })
+                                })
+                            </script>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="card card-warning">
+              <div class="card-header">
+                <h3 class="card-title">查看深度网络图节点</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <form role="form">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- textarea -->
+                      <div class="form-group">
+                        <label>Textarea</label>
+                        <textarea class="form-control" id ="sentence" rows="3" placeholder="Enter ..."></textarea>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Textarea Disabled</label>
+                        <textarea class="form-control" rows="3" id ="word_list" placeholder="Enter ..." disabled></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <button type="button" id="cut" class="btn btn-block btn-default">查看节点</button>
+                      <script>
+                        $(function() {
+                            $("#cut").click(function(){
+                                var sentence = $("#sentence").val();
+
+                                $.ajax({
+                                    url: "",
+                                    type: "POST",
+                                    contentType: 'application/json; charset=UTF-8',
+                                    data: JSON.stringify({"sentence": sentence}),
+                                    async : false,
+                                    success: function (data) {
+                                        if(data['status'] == "success"){
+
+
+                                        }else{
+
+                                        }
+
+                                    }
+                                })
+
+                            })
+                        })
+                    </script>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- /.card-body -->
+            </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-6">
+                  <div class="card card-warning">
+                      <div class="card-header">
+                        <h3 class="card-title">ckpt转pb</h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body">
+                        <form role="form">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <!-- textarea -->
+                              <div class="form-group">
+                                <label>Textarea</label>
+                                <textarea class="form-control" id ="ckpt" rows="3" placeholder="Enter ..."></textarea>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label>Textarea Disabled</label>
+                                <textarea class="form-control" rows="3" id ="pb" placeholder="Enter ..." disabled></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <button type="button" id="ckpt2pb" class="btn btn-block btn-default">转换</button>
+                              <script>
+                                $(function() {
+                                    $("#ckpt2pb").click(function(){
+                                        var sentence = $("#ckpt").val();
+
+                                        $.ajax({
+                                            url: "/api/cut_word",
+                                            type: "POST",
+                                            contentType: 'application/json; charset=UTF-8',
+                                            data: JSON.stringify({"sentence": sentence}),
+                                            async : false,
+                                            success: function (data) {
+                                                if(data['status'] == "success"){
+
+
+                                                }else{
+
+                                                }
+
+                                            }
+                                        })
+
+                                    })
+                                })
+                            </script>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+              </div>
+          </div>
+      </div><!-- /.container-fluid -->
+    </div>
+
+{% endblock %}
